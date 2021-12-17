@@ -1,6 +1,7 @@
 package org.example;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "course")
@@ -9,6 +10,9 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
+
+
+
 
     @ManyToOne
     private Education education;
@@ -23,6 +27,10 @@ public class Course {
 
 
     public Course() {
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getName() {

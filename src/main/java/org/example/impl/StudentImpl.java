@@ -1,5 +1,6 @@
 package org.example.impl;
 
+import org.example.Course;
 import org.example.Education;
 import org.example.Student;
 import org.example.dao.StudentDao;
@@ -7,6 +8,7 @@ import org.example.dao.StudentDao;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class StudentImpl implements StudentDao {
     EntityManagerFactory emf;
@@ -42,5 +44,18 @@ public class StudentImpl implements StudentDao {
         em.getTransaction().begin();
         em.remove(student);
         em.getTransaction().commit();
+    }
+
+    @Override
+    public void setCourseAndGrade(Student student,Course course) {
+        em.getTransaction().begin();
+        em.persist(student);
+        em.getTransaction().commit();
+
+    }
+
+    @Override
+    public List<Student> getAll() {
+        return null;
     }
 }

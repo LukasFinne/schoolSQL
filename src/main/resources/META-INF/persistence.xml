@@ -11,6 +11,13 @@
         <class>org.example.Teacher</class>
         <class>org.example.Course</class>
         <class>org.example.Course</class>
+        <class>org.example.NewEntity</class>
+        <class>org.example.NewEntity</class>
+        <class>org.example.CourseGrade</class>
+        <class>org.example.CourseGrade</class>
+        <class>org.example.CourseGrade</class>
+        <class>org.example.CourseGradeKey</class>
+        <class>org.example.CourseGrade</class>
 
 
         <properties>

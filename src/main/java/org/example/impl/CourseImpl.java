@@ -41,6 +41,9 @@ public class CourseImpl implements CourseDao {
 
     @Override
     public void update(Course course) {
+        em.getTransaction().begin();
+        em.merge(course);
+        em.getTransaction().commit();
 
     }
 

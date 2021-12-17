@@ -53,4 +53,9 @@ public class EducationImpl implements EducationDao {
         em.persist(education);
         em.getTransaction().commit();
     }
+
+    @Override
+    public List<Education> getAll() {
+        return em.createQuery("SELECT education FROM Education education", Education.class).getResultList();
+    }
 }

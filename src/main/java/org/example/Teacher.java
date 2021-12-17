@@ -1,6 +1,8 @@
 package org.example;
 
 import javax.persistence.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "teacher")
@@ -19,8 +21,34 @@ public class Teacher {
     @Column(length = 45)
     private String lastName;
 
+    @ManyToMany
+    @JoinTable(name = "teacher_courses",
+            joinColumns = @JoinColumn(name = "teacher_id"),
+            inverseJoinColumns = @JoinColumn(name = "courses_id"))
+    private Set<Course> courses = new LinkedHashSet<>();
+
+    public Set<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(Set<Course> courses) {
+        this.courses = courses;
+    }
+
     public Teacher(String firstName, String lastName) {
         this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public Teacher() {
+
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 

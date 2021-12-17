@@ -36,6 +36,13 @@ public class Education {
     public Education() {
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Integer getId() {
         return id;
@@ -50,7 +57,6 @@ public class Education {
         return "Education{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", courses=" + courses +
                 '}';
     }
 }

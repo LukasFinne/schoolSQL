@@ -1,19 +1,15 @@
 package org.example;
 
 
-import org.example.dao.CourseDao;
-import org.example.dao.EducationDao;
-import org.example.dao.StudentDao;
-import org.example.dao.TeacherDao;
-import org.example.impl.CourseImpl;
-import org.example.impl.EducationImpl;
-import org.example.impl.StudentImpl;
-import org.example.impl.TeacherImpl;
+import org.example.dao.*;
+import org.example.impl.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class Main {
     public static void main( String[] args ) {
@@ -21,20 +17,64 @@ public class Main {
         StudentDao studentDao = new StudentImpl();
         TeacherDao teacherDao = new TeacherImpl();
         CourseDao courseDao = new CourseImpl();
+        CourseGradeDao courseGradeDao = new CourseGradeImpl();
+
+        Education education = educationDao.getById(1);
+        Student student = studentDao.getById(1);
+        Course course = courseDao.getById(1);
+        Teacher teacher = teacherDao.getById(1);
 
      //   educationDao.create(new Education("Javautvecklare"));
-        Education education = educationDao.getById(1);
-      //   studentDao.create(new Student("Lukas","Finne"), education);
+
+      //  studentDao.create(new Student("Yinn","Lee"), education);
        // teacherDao.create(new Teacher("Daniel", "Danielsson"), education);
        // System.out.println(education);
 
         //courseDao.create(new Course("Javatest"));
        //courseDao.create(new Course(education,"javatest" ));
-       courseDao.create(new Course(education,"utveckling mot databaser" ));
-        //educationDao.setCour(education,list);
+       //courseDao.create(new Course(education,"utveckling mot databaser" ));
+
+        //Gets the course and created a Set
+       /* Set<Course> test = new LinkedHashSet<>();
+        Course course = courseDao.getById(1);
+        Course course2 = courseDao.getById(2);*/
+
+        //Adds courses to the set and then to the teacher class
+       // teacherDao.setCourse(course,test,teacherDao.getById(1));
+       // teacherDao.setCourse(course2,test, teacherDao.getById(1));
 
 
+        /*CourseGrade courseGrade = new CourseGrade();
+        courseGrade.setCourse(course);
+        courseGrade.setStudent(student);
+        courseGrade.setGrade(1);*/
+        //courseGradeDao.create2(new CourseGrade(3,student, course));
 
+
+        //Update - Education
+      /*  education.setName("Java");
+        educationDao.update(education);*/
+
+        //Update - Student
+       /* student.setFirstName("Luke");
+        studentDao.update(student);*/
+
+        //Update - Teacher
+      /*  teacher.setFirstName("Danne");
+        teacherDao.update(teacher);*/
+
+        //Update - Course
+        /*course.setName("Javautveckling");
+        courseDao.update(course);*/
+
+        //Update - CourseGrade
+       /*  CourseGrade courseGrade = courseGradeDao.getById(new CourseGradeKey(1, 1));
+         courseGrade.setGrade(4);
+        courseGradeDao.update(courseGrade);*/
+
+        //getAll - Education
+        educationDao.getAll().forEach(System.out::println);
+        //getAll - Student
 
     }
 }

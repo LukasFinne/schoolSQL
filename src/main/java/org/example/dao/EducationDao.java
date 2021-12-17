@@ -12,5 +12,7 @@ public interface EducationDao {
     void update(Education education);
     void delete(Education education);
     void setCour(Education education, List<Course> list);
+    List<Education> getAll();
+
 
 }

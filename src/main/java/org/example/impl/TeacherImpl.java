@@ -1,5 +1,6 @@
 package org.example.impl;
 
+import org.example.Course;
 import org.example.Education;
 import org.example.Teacher;
 import org.example.dao.TeacherDao;
@@ -7,6 +8,7 @@ import org.example.dao.TeacherDao;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.Set;
 
 public class TeacherImpl implements TeacherDao {
     EntityManagerFactory emf;
@@ -41,6 +43,15 @@ public class TeacherImpl implements TeacherDao {
     public void delete(Teacher teacher) {
         em.getTransaction().begin();
         em.merge(teacher);
+        em.getTransaction().commit();
+    }
+
+    @Override
+    public void setCourse(Course course,Set<Course> test,Teacher teacher) {
+        em.getTransaction().begin();
+        test.add(course);
+        teacher.setCourses(test);
+        em.persist(teacher);
         em.getTransaction().commit();
     }
 }
