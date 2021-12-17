@@ -8,6 +8,7 @@ import org.example.dao.StudentDao;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class StudentImpl implements StudentDao {
@@ -56,6 +57,14 @@ public class StudentImpl implements StudentDao {
 
     @Override
     public List<Student> getAll() {
-        return null;
+        return em.createQuery("SELECT student FROM Student student", Student.class).getResultList();
     }
+
+    @Override
+    public List<Student> getByEducation(int educationId) {
+        TypedQuery<Student> query = em.createQuery("SELECT student FROM Student student WHERE education.id = :education",Student.class);
+        query.setParameter("education", educationId);
+        return query.getResultList();
+    }
+
 }

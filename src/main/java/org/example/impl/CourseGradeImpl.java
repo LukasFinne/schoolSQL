@@ -11,6 +11,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
+import java.util.List;
 
 
 public class CourseGradeImpl implements CourseGradeDao {
@@ -56,6 +57,11 @@ public class CourseGradeImpl implements CourseGradeDao {
     @Override
     public CourseGrade getById(CourseGradeKey id) {
         return em.find(CourseGrade.class, id);
+    }
+
+    @Override
+    public List<CourseGrade> getAll() {
+        return em.createQuery("SELECT course_grade FROM CourseGrade course_grade", CourseGrade.class).getResultList();
     }
 
 

@@ -12,5 +12,7 @@ public interface CourseDao {
     List<Course> toSet(Course course);
     void update(Course course);
     void delete(Course course);
+    List<Course> getAll();
+    List<Course> getByEducation(int EducationId);
 
 }

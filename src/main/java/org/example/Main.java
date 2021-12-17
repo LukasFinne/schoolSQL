@@ -20,7 +20,7 @@ public class Main {
         CourseGradeDao courseGradeDao = new CourseGradeImpl();
 
         Education education = educationDao.getById(1);
-        Student student = studentDao.getById(1);
+        Student student = studentDao.getById(2);
         Course course = courseDao.getById(1);
         Teacher teacher = teacherDao.getById(1);
 
@@ -73,8 +73,28 @@ public class Main {
         courseGradeDao.update(courseGrade);*/
 
         //getAll - Education
-        educationDao.getAll().forEach(System.out::println);
+       //educationDao.getAll().forEach(System.out::println);
         //getAll - Student
+       // studentDao.getAll().forEach(System.out::println);
+        //getAll - Teacher
+       // teacherDao.getAll().forEach(System.out::println);
+        //getAll - Course
+        //courseDao.getAll().forEach(System.out::println);
+        //getALl - CourseGrade
+       // courseGradeDao.getAll().forEach(System.out::println);
+
+        //getByEducation - Course
+       // courseDao.getByEducation(1).forEach(System.out::println);
+        //getByEducaiton - Student
+       // studentDao.getByEducation(1).forEach(System.out::println);
+
+        //remove student form eduaction
+        /*student.setEducation(null);
+        studentDao.update(student);*/
+
+        //add student to education
+       /* student.setEducation(education);
+        studentDao.update(student);*/
 
     }
 }

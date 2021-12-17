@@ -63,4 +63,12 @@ public class CourseGrade {
         this.courseGradeKey = courseGradeKey;
     }
 
+    @Override
+    public String toString() {
+        return "CourseGrade{" +
+                "grade=" + grade +
+                ", student=" + student +
+                ", course=" + course +
+                '}';
+    }
 }

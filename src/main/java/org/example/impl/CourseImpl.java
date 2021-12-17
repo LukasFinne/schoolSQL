@@ -2,11 +2,13 @@ package org.example.impl;
 
 import org.example.Course;
 import org.example.Education;
+import org.example.Student;
 import org.example.dao.CourseDao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -51,5 +53,18 @@ public class CourseImpl implements CourseDao {
     public void delete(Course course) {
 
     }
+
+    @Override
+    public List<Course> getAll() {
+        return em.createQuery("SELECT course FROM Course course", Course.class).getResultList();
+    }
+
+    @Override
+    public List<Course> getByEducation(int educationId) {
+        TypedQuery<Course> query = em.createQuery("SELECT course From Course course WHERE education.id = :education", Course.class);
+        query.setParameter("education", educationId);
+        return query.getResultList();
+    }
+
 
 }

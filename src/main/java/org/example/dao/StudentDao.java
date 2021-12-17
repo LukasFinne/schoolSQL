@@ -13,4 +13,5 @@ public interface StudentDao {
     void delete(Student student);
     void setCourseAndGrade(Student student,Course course);
     List<Student> getAll();
+    List<Student> getByEducation(int educationId);
 }

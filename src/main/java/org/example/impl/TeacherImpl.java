@@ -2,12 +2,14 @@ package org.example.impl;
 
 import org.example.Course;
 import org.example.Education;
+import org.example.Student;
 import org.example.Teacher;
 import org.example.dao.TeacherDao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.List;
 import java.util.Set;
 
 public class TeacherImpl implements TeacherDao {
@@ -53,5 +55,10 @@ public class TeacherImpl implements TeacherDao {
         teacher.setCourses(test);
         em.persist(teacher);
         em.getTransaction().commit();
+    }
+
+    @Override
+    public List<Teacher> getAll() {
+       return em.createQuery("SELECT teacher FROM Teacher teacher", Teacher.class).getResultList();
     }
 }
