@@ -1,5 +1,6 @@
 package org.example.impl;
 
+import org.example.Command;
 import org.example.Course;
 import org.example.Education;
 import org.example.dao.EducationDao;
@@ -8,8 +9,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
+import java.util.Scanner;
 
-public class EducationImpl implements EducationDao {
+public class EducationImpl implements EducationDao{
 
     EntityManagerFactory emf;
     EntityManager em;
@@ -58,4 +60,10 @@ public class EducationImpl implements EducationDao {
     public List<Education> getAll() {
         return em.createQuery("SELECT education FROM Education education", Education.class).getResultList();
     }
+
+
+
+
+
+
 }
