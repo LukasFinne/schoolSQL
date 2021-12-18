@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 public interface CourseDao {
-    void create(Course course);
+    void create(Course course, Education education);
     Course getById(int id);
     List<Course> toSet(Course course);
     void update(Course course);

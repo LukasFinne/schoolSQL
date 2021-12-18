@@ -9,7 +9,6 @@ import java.util.List;
 
 public interface CourseGradeDao {
     void create(CourseGrade courseGrade);
-    void create2(CourseGrade courseGrade);
     void update(CourseGrade courseGrade);
     void remove(CourseGrade courseGrade);
     CourseGrade getById(CourseGradeKey id);

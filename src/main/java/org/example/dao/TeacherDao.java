@@ -12,6 +12,7 @@ public interface TeacherDao {
     Teacher getById(int id);
     void update(Teacher teacher);
     void delete(Teacher teacher);
-    void setCourse(Course course, Set<Course> test, Teacher teacher);
+    void setCourse(List<Course> test, Teacher teacher);
+    void deleteFromCourse(int teacherId, int courseId);
     List<Teacher> getAll();
 }

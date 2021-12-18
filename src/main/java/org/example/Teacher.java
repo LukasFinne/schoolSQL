@@ -1,7 +1,9 @@
 package org.example;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -25,15 +27,20 @@ public class Teacher {
     @JoinTable(name = "teacher_courses",
             joinColumns = @JoinColumn(name = "teacher_id"),
             inverseJoinColumns = @JoinColumn(name = "courses_id"))
-    private Set<Course> courses = new LinkedHashSet<>();
+    private List<Course> courses = new ArrayList<>();
 
-    public Set<Course> getCourses() {
+    public List<Course> getCourses() {
         return courses;
     }
 
-    public void setCourses(Set<Course> courses) {
+    public void setCourses(List<Course> courses) {
         this.courses = courses;
     }
+    public void addTest(List<Course> testList){
+        courses.addAll(testList);
+        setCourses(courses);
+    }
+
 
     public Teacher(String firstName, String lastName) {
         this.firstName = firstName;
@@ -49,6 +56,10 @@ public class Teacher {
     }
 
     public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    public void setName(String firstName, String lastName){
+        this.firstName = firstName;
         this.lastName = lastName;
     }
 

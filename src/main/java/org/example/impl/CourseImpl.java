@@ -3,6 +3,7 @@ package org.example.impl;
 import org.example.Course;
 import org.example.Education;
 import org.example.Student;
+import org.example.Teacher;
 import org.example.dao.CourseDao;
 
 import javax.persistence.EntityManager;
@@ -24,8 +25,9 @@ public class CourseImpl implements CourseDao {
     }
 
     @Override
-    public void create(Course course) {
+    public void create(Course course, Education education) {
         em.getTransaction().begin();
+        course.setEducation(education);
         em.persist(course);
         em.getTransaction().commit();
     }
@@ -51,7 +53,9 @@ public class CourseImpl implements CourseDao {
 
     @Override
     public void delete(Course course) {
-
+        em.getTransaction().begin();
+        em.remove(course);
+        em.getTransaction().commit();
     }
 
     @Override

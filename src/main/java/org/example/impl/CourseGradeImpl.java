@@ -24,13 +24,8 @@ public class CourseGradeImpl implements CourseGradeDao {
     }
 
     @Override
-    public void create(CourseGrade courseGrade){
-        em.persist(courseGrade);
-    }
-
-    @Override
     @Transactional
-    public void create2(CourseGrade courseGrade) {
+    public void create(CourseGrade courseGrade) {
         em.getTransaction().begin();
         em.createNativeQuery("INSERT INTO course_grade(course_id, student_id, grade) VALUES (?,?,?)")
                 .setParameter(1,courseGrade.getCourse())

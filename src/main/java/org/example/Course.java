@@ -11,17 +11,13 @@ public class Course {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-
-
-
     @ManyToOne
     private Education education;
 
     @Column(length = 60)
     private String name;
 
-    public Course(Education education, String name) {
-        this.education = education;
+    public Course(String name) {
         this.name = name;
     }
 

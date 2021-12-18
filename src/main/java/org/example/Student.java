@@ -37,6 +37,10 @@ public class Student {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+    public void setName(String firstName, String lastName){
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
     public String getLastName() {
         return lastName;

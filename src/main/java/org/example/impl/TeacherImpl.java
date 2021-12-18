@@ -9,6 +9,7 @@ import org.example.dao.TeacherDao;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Set;
 
@@ -44,16 +45,26 @@ public class TeacherImpl implements TeacherDao {
     @Override
     public void delete(Teacher teacher) {
         em.getTransaction().begin();
-        em.merge(teacher);
+        em.remove(teacher);
         em.getTransaction().commit();
     }
 
     @Override
-    public void setCourse(Course course,Set<Course> test,Teacher teacher) {
+    public void setCourse(List<Course> test,Teacher teacher) {
         em.getTransaction().begin();
-        test.add(course);
-        teacher.setCourses(test);
+        teacher.addTest(test);
+       // teacher.setCourses(test);
         em.persist(teacher);
+        em.getTransaction().commit();
+    }
+
+    @Override
+    public void deleteFromCourse(int courseId , int teacherId) {
+        em.getTransaction().begin();
+        em.createNativeQuery("DELETE FROM teacher_courses WHERE courses_id = ? AND teacher_id = ?")
+                .setParameter(1,courseId)
+                .setParameter(2, teacherId)
+                .executeUpdate();
         em.getTransaction().commit();
     }
 
