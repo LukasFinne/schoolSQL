@@ -1,10 +1,11 @@
-package org.example;
+package org.example.tables;
+
+import org.example.tables.Course;
+import org.example.tables.Education;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "teacher")

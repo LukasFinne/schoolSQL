@@ -1,11 +1,10 @@
 package org.example.dao;
 
-import org.example.Course;
-import org.example.Education;
-import org.example.Teacher;
+import org.example.tables.Course;
+import org.example.tables.Education;
+import org.example.tables.Teacher;
 
 import java.util.List;
-import java.util.Set;
 
 public interface TeacherDao {
     void create(Teacher teacher, Education education);

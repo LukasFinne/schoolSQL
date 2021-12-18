@@ -1,10 +1,10 @@
 package org.example;
 
 
-import org.example.Menus.CourseMenu;
-import org.example.Menus.EducationMenu;
-import org.example.Menus.StudentMenu;
-import org.example.Menus.TeacherMenu;
+import org.example.menu.CourseMenu;
+import org.example.menu.EducationMenu;
+import org.example.menu.StudentMenu;
+import org.example.menu.TeacherMenu;
 
 import java.util.Scanner;
 

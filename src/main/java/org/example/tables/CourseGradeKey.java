@@ -1,8 +1,7 @@
-package org.example;
+package org.example.tables;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
 import java.io.Serializable;
 import java.util.Objects;
 

@@ -1,14 +1,17 @@
-package org.example.Menus;
+package org.example.menu;
 
 import org.example.Command;
-import org.example.Course;
-import org.example.Education;
-import org.example.Student;
+import org.example.tables.Course;
+import org.example.tables.Education;
 import org.example.dao.CourseDao;
 import org.example.dao.EducationDao;
 import org.example.impl.CourseImpl;
 import org.example.impl.EducationImpl;
+import org.example.tables.Student;
 
+import javax.persistence.PersistenceException;
+import javax.persistence.RollbackException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CourseMenu implements Command {
@@ -17,18 +20,18 @@ public class CourseMenu implements Command {
     Education education;
     Course course;
 
-    private void searchMethod(){
+    private void searchMethod() {
         Scanner sc = new Scanner(System.in);
         String command = sc.nextLine().toLowerCase();
         command = command.replaceAll("\\s+", "");
         switch (command) {
             case "add" -> {
-                System.out.println("Write the name of the student you want to add then the education id you want to him/her to");
-                System.out.println("For example: John Doe 1");
-                courseDao.create(new Course(name(sc)),getEducationId(sc));
+                System.out.println("Write the education id then the name of the course you want to add");
+                System.out.println("For example: 1 John Doe ");
+                idCheck(sc);
             }
             case "update" -> {
-                System.out.println("Write the id of the education you want to update and the updated name");
+                System.out.println("Write the id of the course you want to update and then the updated name");
                 getCourseId(sc).setName(name(sc));
                 courseDao.update(course);
             }
@@ -37,7 +40,7 @@ public class CourseMenu implements Command {
                 System.out.println(getCourseId(sc));
             }
             case "delete" -> {
-                System.out.println("Write the id of the education you want to delete");
+                System.out.println("Write the id of the course you want to delete");
                 getCourseId(sc);
                 courseDao.delete(course);
             }
@@ -58,17 +61,27 @@ public class CourseMenu implements Command {
 
     }
 
-    private String name(Scanner sc){
+    private void idCheck(Scanner sc) {
+        Education idCheck = getEducationId(sc);
+        if(idCheck == null)
+            System.out.println("That id doesn't exist");
+        else
+            courseDao.create(new Course(name(sc)), getEducationId(sc));
+    }
+
+    private String name(Scanner sc) {
         return sc.next();
     }
-    private Education getEducationId(Scanner sc){
+
+    private Education getEducationId(Scanner sc) {
         return education = educationDao.getById(sc.nextInt());
     }
-    private Course getCourseId(Scanner sc){
+
+    private Course getCourseId(Scanner sc) {
         return course = courseDao.getById(sc.nextInt());
     }
 
-    private void printMenuOption(){
+    private void printMenuOption() {
         System.out.println("Here you can search, add, remove, update anything related to the eduation table");
         System.out.println("write \"commands\" to get all the available");
     }
@@ -76,6 +89,14 @@ public class CourseMenu implements Command {
     @Override
     public void execute() {
         printMenuOption();
-        searchMethod();
+        try {
+            searchMethod();
+        } catch (InputMismatchException e) {
+            System.out.println("Wrong input, just numbers please! no alphabets");
+        } catch (RollbackException e) {
+            System.out.println("Already exists");
+        } catch (IllegalArgumentException | PersistenceException | NullPointerException e){
+            System.out.println("That id doesnt exist");
+        }
     }
 }

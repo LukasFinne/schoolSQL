@@ -1,4 +1,6 @@
-package org.example;
+package org.example.tables;
+
+import org.example.tables.Course;
 
 import javax.persistence.*;
 import java.util.ArrayList;

@@ -2,22 +2,12 @@
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.2">
     <persistence-unit name="jpa" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>org.example.Education</class>
-        <class>org.example.Student</class>
-        <class>org.example.Student</class>
-        <class>org.example.Course</class>
-        <class>org.example.Teacher</class>
-        <class>org.example.Student</class>
-        <class>org.example.Teacher</class>
-        <class>org.example.Course</class>
-        <class>org.example.Course</class>
-        <class>org.example.NewEntity</class>
-        <class>org.example.NewEntity</class>
-        <class>org.example.CourseGrade</class>
-        <class>org.example.CourseGrade</class>
-        <class>org.example.CourseGrade</class>
-        <class>org.example.CourseGradeKey</class>
-        <class>org.example.CourseGrade</class>
+        <class>org.example.tables.Education</class>
+        <class>org.example.tables.Student</class>
+        <class>org.example.tables.Course</class>
+        <class>org.example.tables.Teacher</class>
+        <class>org.example.tables.CourseGrade</class>
+        <class>org.example.tables.CourseGradeKey</class>
 
 
         <properties>

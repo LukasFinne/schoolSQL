@@ -1,15 +1,13 @@
 package org.example.impl;
 
-import org.example.Command;
-import org.example.Course;
-import org.example.Education;
+import org.example.tables.Course;
+import org.example.tables.Education;
 import org.example.dao.EducationDao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
-import java.util.Scanner;
 
 public class EducationImpl implements EducationDao{
 

@@ -1,19 +1,14 @@
 package org.example.impl;
 
-import org.example.Course;
-import org.example.Education;
-import org.example.Student;
-import org.example.Teacher;
+import org.example.tables.Course;
+import org.example.tables.Education;
 import org.example.dao.CourseDao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class CourseImpl implements CourseDao {
     EntityManagerFactory emf;

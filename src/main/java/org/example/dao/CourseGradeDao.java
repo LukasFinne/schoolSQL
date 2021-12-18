@@ -1,9 +1,7 @@
 package org.example.dao;
 
-import org.example.Course;
-import org.example.CourseGrade;
-import org.example.CourseGradeKey;
-import org.example.Student;
+import org.example.tables.CourseGrade;
+import org.example.tables.CourseGradeKey;
 
 import java.util.List;
 

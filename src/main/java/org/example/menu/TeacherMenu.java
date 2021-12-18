@@ -1,9 +1,10 @@
-package org.example.Menus;
+package org.example.menu;
 
 import org.example.Command;
-import org.example.Course;
-import org.example.Education;
-import org.example.Teacher;
+import org.example.tables.Course;
+import org.example.tables.Education;
+import org.example.tables.Student;
+import org.example.tables.Teacher;
 import org.example.dao.CourseDao;
 import org.example.dao.EducationDao;
 import org.example.dao.TeacherDao;
@@ -11,6 +12,8 @@ import org.example.impl.CourseImpl;
 import org.example.impl.EducationImpl;
 import org.example.impl.TeacherImpl;
 
+import javax.persistence.PersistenceException;
+import javax.persistence.RollbackException;
 import java.util.*;
 
 public class TeacherMenu implements Command {
@@ -23,15 +26,15 @@ public class TeacherMenu implements Command {
     static List<Course> courseSet = new ArrayList<>();
 
 
-    private void searchMethod(){
+    private void searchMethod() {
         Scanner sc = new Scanner(System.in);
         String command = sc.nextLine().toLowerCase();
         command = command.replaceAll("\\s+", "");
         switch (command) {
             case "add" -> {
-                System.out.println("Write the name of the teacher, then the education id you want to him/her to be added to");
-                System.out.println("For example: John Doe 1");
-                teacherDao.create(new Teacher(name(sc), name(sc)), getEducationId(sc));
+                System.out.println("Write the education id then the name of the teacher you want to add");
+                System.out.println("For example: 1 John Doe ");
+                idCheck(sc);
             }
             case "update" -> {
                 System.out.println("Write the teacher id then the teacher updated name");
@@ -55,7 +58,7 @@ public class TeacherMenu implements Command {
                 teacherDao.setCourse(courseSet, getTeacherId(sc));
             }
             case "deletefromcourse" -> {
-                System.out.println("Please write the id of the course then then id of the teacher");
+                System.out.println("Please write the id of the course then id of the teacher");
                 teacherDao.deleteFromCourse(sc.nextInt(), sc.nextInt());
             }
 
@@ -72,20 +75,31 @@ public class TeacherMenu implements Command {
 
     }
 
-    private String name(Scanner sc){
+    private void idCheck(Scanner sc) {
+        Education idCheck = getEducationId(sc);
+        if(idCheck == null)
+            System.out.println("That id doesn't exist");
+        else
+            teacherDao.create(new Teacher(name(sc), name(sc)), getEducationId(sc));
+    }
+
+    private String name(Scanner sc) {
         return sc.next();
     }
-    private Teacher getTeacherId(Scanner sc){
+
+    private Teacher getTeacherId(Scanner sc) {
         return teacher = teacherDao.getById(sc.nextInt());
     }
-    private Course getCourseId(Scanner sc){
+
+    private Course getCourseId(Scanner sc) {
         return course = courseDao.getById(sc.nextInt());
     }
-    private Education getEducationId(Scanner sc){
+
+    private Education getEducationId(Scanner sc) {
         return education = educationDao.getById(sc.nextInt());
     }
 
-    private void printMenuOption(){
+    private void printMenuOption() {
         System.out.println("Here you can search, add, remove, update anything related to the eduation table");
         System.out.println("write \"commands\" to get all the available");
     }
@@ -93,6 +107,15 @@ public class TeacherMenu implements Command {
     @Override
     public void execute() {
         printMenuOption();
-        searchMethod();
+        try {
+            searchMethod();
+        } catch (InputMismatchException e) {
+            System.out.println("Wrong input, just numbers please! no alphabets");
+        } catch (RollbackException e) {
+            System.out.println("Already exists");
+        } catch (IllegalArgumentException | PersistenceException | NullPointerException | IllegalStateException e){
+            System.out.println("That id doesnt exist");
+        }
+
     }
 }

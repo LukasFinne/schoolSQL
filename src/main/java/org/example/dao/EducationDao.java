@@ -1,9 +1,8 @@
 package org.example.dao;
 
-import org.example.Course;
-import org.example.Education;
+import org.example.tables.Course;
+import org.example.tables.Education;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface EducationDao {

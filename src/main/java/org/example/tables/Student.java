@@ -1,7 +1,8 @@
-package org.example;
+package org.example.tables;
+
+import org.example.tables.Education;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "student")

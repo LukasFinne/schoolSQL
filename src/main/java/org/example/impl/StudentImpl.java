@@ -1,8 +1,8 @@
 package org.example.impl;
 
-import org.example.Course;
-import org.example.Education;
-import org.example.Student;
+import org.example.tables.Course;
+import org.example.tables.Education;
+import org.example.tables.Student;
 import org.example.dao.StudentDao;
 
 import javax.persistence.EntityManager;

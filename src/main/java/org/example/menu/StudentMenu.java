@@ -1,4 +1,4 @@
-package org.example.Menus;
+package org.example.menu;
 
 import org.example.*;
 import org.example.dao.CourseDao;
@@ -9,7 +9,12 @@ import org.example.impl.CourseGradeImpl;
 import org.example.impl.CourseImpl;
 import org.example.impl.EducationImpl;
 import org.example.impl.StudentImpl;
+import org.example.tables.*;
 
+import javax.persistence.PersistenceException;
+import javax.persistence.RollbackException;
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class StudentMenu implements Command {
@@ -23,15 +28,15 @@ public class StudentMenu implements Command {
     Course course;
 
 
-    private void searchMethod(){
+    private void searchMethod() {
         Scanner sc = new Scanner(System.in);
         String command = sc.nextLine().toLowerCase();
         command = command.replaceAll("\\s+", "");
         switch (command) {
             case "add" -> {
-                System.out.println("Write the name of the student you want to add then the education id you want to him/her to");
-                System.out.println("For example: John Doe 1");
-                studentDao.create(new Student(name(sc), name(sc)), getEducationId(sc));
+                System.out.println("Write the education id then the name of the student you want to add");
+                System.out.println("For example: 1 John Doe");
+                idCheck(sc);
             }
             case "update" -> {
                 System.out.println("Write the student id then the students updated name");
@@ -65,7 +70,11 @@ public class StudentMenu implements Command {
                 System.out.println("To add a grade to a student just write, the grade, student id and course id");
                 System.out.println("In this school the grade system is like this: F=0 E=1 D=2 C=3 B=4 A=5");
                 System.out.println("For example: (grade)1 (student id)2 (course id)3");
-                courseGradeDao.create(new CourseGrade(sc.nextInt(),getStudentId(sc),getCourseId(sc)));
+                int grade = sc.nextInt();
+                if(grade >= 0 && grade <= 5 )
+                    courseGradeDao.create(new CourseGrade(grade, getStudentId(sc), getCourseId(sc)));
+                else
+                    System.out.println("the grade can only be between 0 and 5");
             }
             case "deletegrade" -> {
                 System.out.println("To delete a students grade from a course just write, the students id and course id");
@@ -79,27 +88,38 @@ public class StudentMenu implements Command {
                 searchMethod();
             }
             default -> {
-                System.out.println("Försök igen!");
+                System.out.println("Try again please");
                 execute();
             }
         }
 
     }
 
-    private String name(Scanner sc){
+    private void idCheck(Scanner sc) {
+        Education idCheck = getEducationId(sc);
+        if(idCheck == null)
+            System.out.println("That id doesn't exist");
+        else
+            studentDao.create(new Student(name(sc), name(sc)), idCheck);
+    }
+
+    private String name(Scanner sc) {
         return sc.next();
     }
-    private Student getStudentId(Scanner sc){
+
+    private Student getStudentId(Scanner sc) {
         return student = studentDao.getById(sc.nextInt());
     }
-    private Course getCourseId(Scanner sc){
+
+    private Course getCourseId(Scanner sc) {
         return course = courseDao.getById(sc.nextInt());
     }
-    private Education getEducationId(Scanner sc){
+
+    private Education getEducationId(Scanner sc) {
         return education = educationDao.getById(sc.nextInt());
     }
 
-    private void printMenuOption(){
+    private void printMenuOption() {
         System.out.println("Here you can search, add, remove, update anything related to the eduation table");
         System.out.println("write \"commands\" to get all the available");
     }
@@ -107,6 +127,15 @@ public class StudentMenu implements Command {
     @Override
     public void execute() {
         printMenuOption();
-        searchMethod();
+        try {
+            searchMethod();
+        } catch (InputMismatchException e) {
+            System.out.println("Wrong input, just numbers please! no alphabets");
+        } catch (RollbackException e) {
+            System.out.println("Already exists");
+        } catch (IllegalArgumentException | PersistenceException | NullPointerException e){
+            System.out.println("That id doesnt exist");
+        }
+
     }
 }
