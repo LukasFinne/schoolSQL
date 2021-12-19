@@ -3,6 +3,7 @@ package org.example;
 
 import org.example.menu.*;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -21,6 +22,7 @@ public class Main {
     public static void main(String[] args) {
         Main main = new Main();
         main.run();
+
     }
 
     private void shutdown() {
@@ -31,7 +33,12 @@ public class Main {
         int choice = 0;
         do {
             printMenuOption();
-            choice = readChoice(sc);
+            try {
+                choice = readChoice(sc);
+            }catch (InputMismatchException e) {
+                System.out.println("Wrong input, just numbers please! no alphabets");
+            }
+
             executeChoice(choice);
         } while (choice != 0);
     }
