@@ -2,12 +2,14 @@ package org.example.impl;
 
 import org.example.tables.Course;
 import org.example.tables.Education;
+import org.example.tables.Student;
 import org.example.tables.Teacher;
 import org.example.dao.TeacherDao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class TeacherImpl implements TeacherDao {
@@ -63,6 +65,13 @@ public class TeacherImpl implements TeacherDao {
                 .setParameter(2, teacherId)
                 .executeUpdate();
         em.getTransaction().commit();
+    }
+
+    @Override
+    public List<Teacher> getByEducation(int educationId) {
+        TypedQuery<Teacher> query = em.createQuery("SELECT teacher FROM Teacher teacher WHERE education.id = :education", Teacher.class);
+        query.setParameter("education", educationId);
+        return query.getResultList();
     }
 
 

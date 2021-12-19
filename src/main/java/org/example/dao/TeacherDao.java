@@ -19,5 +19,7 @@ public interface TeacherDao {
 
     void deleteFromCourse(int teacherId, int courseId);
 
+    List<Teacher> getByEducation(int educationId);
+
     List<Teacher> getAll();
 }
