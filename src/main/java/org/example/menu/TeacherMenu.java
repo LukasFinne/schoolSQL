@@ -52,7 +52,7 @@ public class TeacherMenu implements Command {
                 teacherDao.delete(teacher);
             }
             case "updateeducation" -> {
-                System.out.println("Do edit a students education write student id then the education or null if you want to remove it");
+                System.out.println("Do edit a teachers education write the teacher id then the education or null if you want to remove it");
                 System.out.println("For example (teacher id)1, (education id)1");
                 getTeacherId(sc).setEducation(getEducationId(sc));
                 teacherDao.update(teacher);
@@ -76,7 +76,8 @@ public class TeacherMenu implements Command {
 
             case "all" -> teacherDao.getAll().forEach(System.out::println);
             case "commands" -> {
-                System.out.println("Commands: add, update, id, delete, all, delete from course, add to course, get by education");
+                System.out.println("Commands: add, update, id, delete, all, delete from course, add to course, get by education,");
+                System.out.println("update education");
                 searchMethod();
             }
             default -> {
