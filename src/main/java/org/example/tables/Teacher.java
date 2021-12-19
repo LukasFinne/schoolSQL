@@ -37,9 +37,12 @@ public class Teacher {
     public void setCourses(List<Course> courses) {
         this.courses = courses;
     }
-    public void addTest(List<Course> testList){
+    public void add(List<Course> testList){
         courses.addAll(testList);
         setCourses(courses);
+    }
+    public void clearList(List<Course> list){
+        list.clear();
     }
 
 

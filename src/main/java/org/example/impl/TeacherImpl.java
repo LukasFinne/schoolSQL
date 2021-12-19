@@ -47,11 +47,12 @@ public class TeacherImpl implements TeacherDao {
     }
 
     @Override
-    public void setCourse(List<Course> test,Teacher teacher) {
+    public void setCourse(List<Course> list,Teacher teacher) {
         em.getTransaction().begin();
-        teacher.addTest(test);
+        teacher.add(list);
        // teacher.setCourses(test);
         em.persist(teacher);
+        teacher.clearList(list);
         em.getTransaction().commit();
     }
 
@@ -64,6 +65,7 @@ public class TeacherImpl implements TeacherDao {
                 .executeUpdate();
         em.getTransaction().commit();
     }
+
 
     @Override
     public List<Teacher> getAll() {

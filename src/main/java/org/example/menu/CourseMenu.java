@@ -45,6 +45,12 @@ public class CourseMenu implements Command {
                 courseDao.delete(course);
             }
             case "all" -> courseDao.getAll().forEach(System.out::println);
+            case "updateeducation" -> {
+                System.out.println("To edit a course education write student id then the education or null if you want to remove it");
+                System.out.println("For example (course id)1, (education id)1");
+                getCourseId(sc).setEducation(getEducationId(sc));
+                courseDao.update(course);
+            }
             case "getbyeducation" -> {
                 System.out.println("to see all courses connected to a specfic education, just write the education id");
                 courseDao.getByEducation(sc.nextInt()).forEach(System.out::println);
@@ -66,7 +72,7 @@ public class CourseMenu implements Command {
         if(idCheck == null)
             System.out.println("That id doesn't exist");
         else
-            courseDao.create(new Course(name(sc)), getEducationId(sc));
+            courseDao.create(new Course(name(sc)), idCheck);
     }
 
     private String name(Scanner sc) {

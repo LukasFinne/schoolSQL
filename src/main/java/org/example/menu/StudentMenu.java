@@ -54,6 +54,12 @@ public class StudentMenu implements Command {
                 studentDao.delete(student);
             }
             case "all" -> studentDao.getAll().forEach(System.out::println);
+            case "updateeducation" -> {
+                System.out.println("Do edit a students education write student id then the education or null if you want to remove it");
+                System.out.println("For example (student id)1, (education id)1");
+                getStudentId(sc).setEducation(getEducationId(sc));
+                studentDao.update(student);
+            }
             case "getbyeducation" -> {
                 System.out.println("to see a student specific education just write the id of the education");
                 studentDao.getByEducation(sc.nextInt()).forEach(System.out::println);
@@ -77,14 +83,14 @@ public class StudentMenu implements Command {
                     System.out.println("the grade can only be between 0 and 5");
             }
             case "deletegrade" -> {
-                System.out.println("To delete a students grade from a course just write, the students id and course id");
+                System.out.println("To delete a student grade from a course just write, the students id and course id");
                 System.out.println("For example: (student id)1 (course id)2");
                 CourseGrade courseGrade = courseGradeDao.getById(new CourseGradeKey(sc.nextInt(), sc.nextInt()));
                 courseGradeDao.remove(courseGrade);
             }
             case "commands" -> {
                 System.out.println("Commands: add, update, id, delete, all, add grade, delete grade");
-                System.out.println("get all grades,get grade by id, get by education ");
+                System.out.println("get all grades,get grade by id, get by education, update education");
                 searchMethod();
             }
             default -> {

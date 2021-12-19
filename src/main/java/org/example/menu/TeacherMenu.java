@@ -23,7 +23,7 @@ public class TeacherMenu implements Command {
     Teacher teacher;
     Education education;
     Course course;
-    static List<Course> courseSet = new ArrayList<>();
+    List<Course> courseSet = new ArrayList<>();
 
 
     private void searchMethod() {
@@ -80,7 +80,7 @@ public class TeacherMenu implements Command {
         if(idCheck == null)
             System.out.println("That id doesn't exist");
         else
-            teacherDao.create(new Teacher(name(sc), name(sc)), getEducationId(sc));
+            teacherDao.create(new Teacher(name(sc), name(sc)),idCheck);
     }
 
     private String name(Scanner sc) {
