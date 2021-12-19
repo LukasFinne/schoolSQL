@@ -50,7 +50,6 @@ public class TeacherImpl implements TeacherDao {
     public void setCourse(List<Course> list,Teacher teacher) {
         em.getTransaction().begin();
         teacher.add(list);
-       // teacher.setCourses(test);
         em.persist(teacher);
         teacher.clearList(list);
         em.getTransaction().commit();

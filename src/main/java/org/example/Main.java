@@ -1,10 +1,7 @@
 package org.example;
 
 
-import org.example.menu.CourseMenu;
-import org.example.menu.EducationMenu;
-import org.example.menu.StudentMenu;
-import org.example.menu.TeacherMenu;
+import org.example.menu.*;
 
 import java.util.Scanner;
 
@@ -17,6 +14,7 @@ public class Main {
         commands[2] = new CourseMenu();
         commands[3] = new StudentMenu();
         commands[4] = new TeacherMenu();
+        commands[5] = new StatsMenu();
         commands[0] = this::shutdown;
     }
 
@@ -50,7 +48,7 @@ public class Main {
         System.out.println("2. Course");
         System.out.println("3. Student");
         System.out.println("4. Teacher");
-        System.out.println("5. Grade");
+        System.out.println("5. Stats");
         System.out.println("0. Exit");
     }
 

@@ -88,7 +88,7 @@ public class CourseMenu implements Command {
     }
 
     private void printMenuOption() {
-        System.out.println("Here you can search, add, remove, update anything related to the eduation table");
+        System.out.println("Here you can search, add, remove, update anything related to the course table");
         System.out.println("write \"commands\" to get all the available");
     }
 
