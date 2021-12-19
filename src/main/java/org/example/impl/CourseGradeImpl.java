@@ -25,9 +25,9 @@ public class CourseGradeImpl implements CourseGradeDao {
     public void create(CourseGrade courseGrade) {
         em.getTransaction().begin();
         em.createNativeQuery("INSERT INTO course_grade(course_id, student_id, grade) VALUES (?,?,?)")
-                .setParameter(1,courseGrade.getCourse())
-                .setParameter(2,courseGrade.getStudent())
-                .setParameter(3,courseGrade.getGrade())
+                .setParameter(1, courseGrade.getCourse())
+                .setParameter(2, courseGrade.getStudent())
+                .setParameter(3, courseGrade.getGrade())
                 .executeUpdate();
         em.getTransaction().commit();
     }

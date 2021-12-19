@@ -47,7 +47,7 @@ public class TeacherImpl implements TeacherDao {
     }
 
     @Override
-    public void setCourse(List<Course> list,Teacher teacher) {
+    public void setCourse(List<Course> list, Teacher teacher) {
         em.getTransaction().begin();
         teacher.add(list);
         em.persist(teacher);
@@ -56,10 +56,10 @@ public class TeacherImpl implements TeacherDao {
     }
 
     @Override
-    public void deleteFromCourse(int courseId , int teacherId) {
+    public void deleteFromCourse(int courseId, int teacherId) {
         em.getTransaction().begin();
         em.createNativeQuery("DELETE FROM teacher_courses WHERE courses_id = ? AND teacher_id = ?")
-                .setParameter(1,courseId)
+                .setParameter(1, courseId)
                 .setParameter(2, teacherId)
                 .executeUpdate();
         em.getTransaction().commit();
@@ -68,6 +68,6 @@ public class TeacherImpl implements TeacherDao {
 
     @Override
     public List<Teacher> getAll() {
-       return em.createQuery("SELECT teacher FROM Teacher teacher", Teacher.class).getResultList();
+        return em.createQuery("SELECT teacher FROM Teacher teacher", Teacher.class).getResultList();
     }
 }

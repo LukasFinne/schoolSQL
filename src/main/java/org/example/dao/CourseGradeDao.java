@@ -7,9 +7,13 @@ import java.util.List;
 
 public interface CourseGradeDao {
     void create(CourseGrade courseGrade);
+
     void update(CourseGrade courseGrade);
+
     void remove(CourseGrade courseGrade);
+
     CourseGrade getById(CourseGradeKey id);
+
     List<CourseGrade> getAll();
 
 }

@@ -9,7 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 
-public class EducationImpl implements EducationDao{
+public class EducationImpl implements EducationDao {
 
     EntityManagerFactory emf;
     EntityManager em;
@@ -29,7 +29,7 @@ public class EducationImpl implements EducationDao{
 
     @Override
     public Education getById(int id) {
-        return em.find(Education.class,id);
+        return em.find(Education.class, id);
     }
 
     @Override
@@ -58,10 +58,6 @@ public class EducationImpl implements EducationDao{
     public List<Education> getAll() {
         return em.createQuery("SELECT education FROM Education education", Education.class).getResultList();
     }
-
-
-
-
 
 
 }

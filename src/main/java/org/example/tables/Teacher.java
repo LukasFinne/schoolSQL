@@ -37,11 +37,13 @@ public class Teacher {
     public void setCourses(List<Course> courses) {
         this.courses = courses;
     }
-    public void add(List<Course> courseList){
+
+    public void add(List<Course> courseList) {
         courses.addAll(courseList);
         setCourses(courses);
     }
-    public void clearList(List<Course> list){
+
+    public void clearList(List<Course> list) {
         list.clear();
     }
 
@@ -62,7 +64,8 @@ public class Teacher {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    public void setName(String firstName, String lastName){
+
+    public void setName(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }

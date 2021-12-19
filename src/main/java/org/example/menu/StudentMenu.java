@@ -77,7 +77,7 @@ public class StudentMenu implements Command {
                 System.out.println("In this school the grade system is like this: F=0 E=1 D=2 C=3 B=4 A=5");
                 System.out.println("For example: (grade)1 (student id)2 (course id)3");
                 int grade = sc.nextInt();
-                if(grade >= 0 && grade <= 5 )
+                if (grade >= 0 && grade <= 5)
                     courseGradeDao.create(new CourseGrade(grade, getStudentId(sc), getCourseId(sc)));
                 else
                     System.out.println("the grade can only be between 0 and 5");
@@ -103,7 +103,7 @@ public class StudentMenu implements Command {
 
     private void idCheck(Scanner sc) {
         Education idCheck = getEducationId(sc);
-        if(idCheck == null)
+        if (idCheck == null)
             System.out.println("That id doesn't exist");
         else
             studentDao.create(new Student(name(sc), name(sc)), idCheck);
@@ -139,7 +139,7 @@ public class StudentMenu implements Command {
             System.out.println("Wrong input, just numbers please! no alphabets");
         } catch (RollbackException e) {
             System.out.println("Already exists");
-        } catch (IllegalArgumentException | PersistenceException | NullPointerException e){
+        } catch (IllegalArgumentException | PersistenceException | NullPointerException e) {
             System.out.println("That id doesnt exist");
         }
 

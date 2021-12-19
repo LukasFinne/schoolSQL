@@ -23,8 +23,6 @@ public class StatsImpl implements Stats {
 
         Query query = em.createQuery("SELECT CONCAT(s.firstName , ' ' , s.lastName) AS NAME, FLOOR(AVG(course_grade.grade)) AS GRADE FROM CourseGrade course_grade INNER JOIN Student s on course_grade.student.id = s.id GROUP BY s.id");
         return query.getResultList();
-
-
     }
 
     @Override

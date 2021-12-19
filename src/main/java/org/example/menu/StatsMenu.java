@@ -23,7 +23,7 @@ public class StatsMenu implements Command {
                 System.out.println("F=0 E=1 D=2 C=3 B=4 A=5 ");
                 stats.AverageGradeByStudent().forEach(r -> System.out.println(Arrays.toString(r)));
             }
-            case "avggradebycourse" ->{
+            case "avggradebycourse" -> {
                 System.out.println("-- Course average grade -- ");
                 System.out.println("F=0 E=1 D=2 C=3 B=4 A=5 ");
                 stats.AverageGradeByCourse().forEach(r -> System.out.println(Arrays.toString(r)));
@@ -44,6 +44,7 @@ public class StatsMenu implements Command {
         }
 
     }
+
     private void printMenuOption() {
         System.out.println("Here you can find different interesting stats about this school!");
         System.out.println("write \"commands\" to get all the available");

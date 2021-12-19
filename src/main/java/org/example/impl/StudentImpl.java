@@ -30,7 +30,7 @@ public class StudentImpl implements StudentDao {
 
     @Override
     public Student getById(int id) {
-        return em.find(Student.class,id);
+        return em.find(Student.class, id);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class StudentImpl implements StudentDao {
     }
 
     @Override
-    public void setCourseAndGrade(Student student,Course course) {
+    public void setCourseAndGrade(Student student, Course course) {
         em.getTransaction().begin();
         em.persist(student);
         em.getTransaction().commit();
@@ -62,7 +62,7 @@ public class StudentImpl implements StudentDao {
 
     @Override
     public List<Student> getByEducation(int educationId) {
-        TypedQuery<Student> query = em.createQuery("SELECT student FROM Student student WHERE education.id = :education",Student.class);
+        TypedQuery<Student> query = em.createQuery("SELECT student FROM Student student WHERE education.id = :education", Student.class);
         query.setParameter("education", educationId);
         return query.getResultList();
     }

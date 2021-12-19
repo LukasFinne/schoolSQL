@@ -73,7 +73,7 @@ public class EducationMenu implements Command {
             System.out.println("Wrong input, just numbers please! no alphabets");
         } catch (RollbackException e) {
             System.out.println("Already exists");
-        }catch (IllegalArgumentException | NullPointerException e){
+        } catch (IllegalArgumentException | NullPointerException e) {
             System.out.println("That id doesnt exist");
         }
     }

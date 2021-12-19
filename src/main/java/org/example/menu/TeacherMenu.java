@@ -77,10 +77,10 @@ public class TeacherMenu implements Command {
 
     private void idCheck(Scanner sc) {
         Education idCheck = getEducationId(sc);
-        if(idCheck == null)
+        if (idCheck == null)
             System.out.println("That id doesn't exist");
         else
-            teacherDao.create(new Teacher(name(sc), name(sc)),idCheck);
+            teacherDao.create(new Teacher(name(sc), name(sc)), idCheck);
     }
 
     private String name(Scanner sc) {
@@ -113,7 +113,7 @@ public class TeacherMenu implements Command {
             System.out.println("Wrong input, just numbers please! no alphabets");
         } catch (RollbackException e) {
             System.out.println("Already exists");
-        } catch (IllegalArgumentException | PersistenceException | NullPointerException | IllegalStateException e){
+        } catch (IllegalArgumentException | PersistenceException | NullPointerException | IllegalStateException e) {
             System.out.println("That id doesnt exist");
         }
 

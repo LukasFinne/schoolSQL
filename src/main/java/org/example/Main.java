@@ -6,10 +6,10 @@ import org.example.menu.*;
 import java.util.Scanner;
 
 public class Main {
-    private static final Scanner sc  = new Scanner(System.in);
+    private static final Scanner sc = new Scanner(System.in);
     private static final Command[] commands = new Command[6];
 
-    public Main(){
+    public Main() {
         commands[1] = new EducationMenu();
         commands[2] = new CourseMenu();
         commands[3] = new StudentMenu();
@@ -18,32 +18,33 @@ public class Main {
         commands[0] = this::shutdown;
     }
 
-    public static void main( String[] args ) {
-        Main main  = new Main();
+    public static void main(String[] args) {
+        Main main = new Main();
         main.run();
     }
 
-    private void shutdown(){
+    private void shutdown() {
         System.exit(0);
     }
 
-    private void run(){
+    private void run() {
         int choice = 0;
         do {
             printMenuOption();
             choice = readChoice(sc);
             executeChoice(choice);
-        }while(choice != 0);
+        } while (choice != 0);
     }
 
-    private void executeChoice(int choice){
+    private void executeChoice(int choice) {
         commands[choice].execute();
     }
-    private int readChoice(Scanner sc){
+
+    private int readChoice(Scanner sc) {
         return sc.nextInt();
     }
 
-    private void printMenuOption(){
+    private void printMenuOption() {
         System.out.println("1. Education");
         System.out.println("2. Course");
         System.out.println("3. Student");
