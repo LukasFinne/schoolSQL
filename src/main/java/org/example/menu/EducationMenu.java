@@ -44,7 +44,7 @@ public class EducationMenu implements Command {
                 searchMethod();
             }
             default -> {
-                System.out.println("Försök igen!");
+                System.out.println("Try again");
                 execute();
             }
         }

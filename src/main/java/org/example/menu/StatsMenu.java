@@ -7,6 +7,7 @@ import org.example.tables.CourseGrade;
 import org.example.tables.CourseGradeKey;
 
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class StatsMenu implements Command {
@@ -38,7 +39,7 @@ public class StatsMenu implements Command {
                 searchMethod();
             }
             default -> {
-                System.out.println("Try again please");
+                System.out.println("Try again");
                 execute();
             }
         }
@@ -54,6 +55,10 @@ public class StatsMenu implements Command {
     @Override
     public void execute() {
         printMenuOption();
-        searchMethod();
+        try {
+            searchMethod();
+        } catch (InputMismatchException e) {
+            System.out.println("Wrong input, just numbers please! no alphabets");
+        }
     }
 }
