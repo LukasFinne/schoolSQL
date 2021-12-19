@@ -11,7 +11,7 @@
 
 
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/school2"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/school"/>
             <property name="javax.persistence.jdbc.user" value="javaConnect"/>
             <property name="javax.persistence.jdbc.password" value="password123"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
