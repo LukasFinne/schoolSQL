@@ -46,13 +46,6 @@ public class EducationImpl implements EducationDao {
         em.getTransaction().commit();
     }
 
-    @Override
-    public void setCour(Education education, List<Course> list) {
-        em.getTransaction().begin();
-        education.setCourses(list);
-        em.persist(education);
-        em.getTransaction().commit();
-    }
 
     @Override
     public List<Education> getAll() {
