@@ -56,7 +56,7 @@ public class CourseMenu implements Command {
                 courseDao.getByEducation(sc.nextInt()).forEach(System.out::println);
             }
             case "commands" -> {
-                System.out.println("Commands: add, update, id, delete, all,update education, get by education");
+                System.out.println("Commands: add, update, id, delete, all, update education, get by education");
                 searchMethod();
             }
             default -> {
