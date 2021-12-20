@@ -52,11 +52,11 @@ public class CourseMenu implements Command {
                 courseDao.update(course);
             }
             case "getbyeducation" -> {
-                System.out.println("to see all courses connected to a specfic education, just write the education id");
+                System.out.println("to see all courses connected to a specific education, just write the education id");
                 courseDao.getByEducation(sc.nextInt()).forEach(System.out::println);
             }
             case "commands" -> {
-                System.out.println("Commands: add, update, id, delete, all, get by education");
+                System.out.println("Commands: add, update, id, delete, all,update education, get by education");
                 searchMethod();
             }
             default -> {
